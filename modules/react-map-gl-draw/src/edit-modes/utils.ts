@@ -13,11 +13,11 @@ export function parseEventElement(evt: MjolnirEvent, features: Feature[], guides
     return null;
   }
 
-  let featureIndex = elem.dataset.featureIndex;
-  featureIndex = isNumeric(featureIndex) ? Number(featureIndex) : -1;
+  const featureIndexRaw = elem.dataset.featureIndex;
+  const featureIndex = isNumeric(featureIndexRaw) ? Number(featureIndexRaw) : -1;
 
-  let index = elem.dataset.index;
-  index = isNumeric(index) ? Number(index) : undefined;
+  const indexRaw = elem.dataset.index;
+  const index = isNumeric(indexRaw) ? Number(indexRaw) : undefined;
 
   const type = elem.dataset.type;
   const tentativeFeature =
@@ -55,6 +55,7 @@ export function parseEventElement(evt: MjolnirEvent, features: Feature[], guides
 
 export function getScreenCoords(evt: MjolnirEvent) {
   const {
+    // @ts-ignore
     offsetCenter: { x, y },
   } = evt;
   return [Number(x), Number(y)];

@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 import HtmlOverlay from './html-overlay';
 import HtmlOverlayItem from './html-overlay-item';
 
@@ -27,6 +25,7 @@ export default class HtmlTooltipOverlay extends HtmlOverlay {
   }
 
   componentWillMount() {
+    // @ts-ignore
     this.context.nebula.queryObjectEvents.on('pick', ({ event, pickingInfo }) => {
       if (this.timeoutID !== null) {
         window.clearTimeout(this.timeoutID);
@@ -44,6 +43,7 @@ export default class HtmlTooltipOverlay extends HtmlOverlay {
   }
 
   timeoutID: number | null | undefined = null;
+  // @ts-ignore
   state: State;
 
   _getTooltip(pickingInfo: Record<string, any>): string {
@@ -51,7 +51,7 @@ export default class HtmlTooltipOverlay extends HtmlOverlay {
   }
 
   _makeOverlay() {
-    const { pickingInfo } = this.state;
+    const { pickingInfo } = this.state as State;
 
     if (pickingInfo) {
       return (

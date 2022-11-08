@@ -10,9 +10,10 @@ export class RotateHandler extends ModeHandler {
   _isRotatable: boolean;
   _geometryBeingRotated: FeatureCollection | null | undefined;
 
-  handlePointerMove(
-    event: PointerMoveEvent
-  ): { editAction: EditAction | null | undefined; cancelMapPan: boolean } {
+  handlePointerMove(event: PointerMoveEvent): {
+    editAction: EditAction | null | undefined;
+    cancelMapPan: boolean;
+  } {
     let editAction: EditAction | null | undefined = null;
 
     this._isRotatable = Boolean(this._geometryBeingRotated) || this.isSelectionPicked(event.picks);
@@ -69,7 +70,9 @@ export class RotateHandler extends ModeHandler {
 
   getRotateAction(startDragPoint: Position, currentPoint: Position, editType: string): EditAction {
     const startPosition = startDragPoint;
+    // @ts-ignore
     const centroid = turfCentroid(this._geometryBeingRotated);
+    // @ts-ignore
     const angle = getRotationAngle(centroid, startPosition, currentPoint);
     // @ts-ignore
     const rotatedFeatures = turfTransformRotate(this._geometryBeingRotated, angle);
@@ -79,6 +82,7 @@ export class RotateHandler extends ModeHandler {
     const selectedIndexes = this.getSelectedFeatureIndexes();
     for (let i = 0; i < selectedIndexes.length; i++) {
       const selectedIndex = selectedIndexes[i];
+      // @ts-ignore
       const movedFeature = rotatedFeatures.features[i];
       updatedData = updatedData.replaceGeometry(selectedIndex, movedFeature.geometry);
     }

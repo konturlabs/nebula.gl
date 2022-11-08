@@ -10,10 +10,10 @@ import {
   DrawPolygonMode,
 } from '@nebula.gl/edit-modes';
 
+import featureCollection from '../data/sample-geojson.json';
 import { MODES } from './constants';
 import Toolbar from './toolbar';
 import { getEditHandleStyle, getFeatureStyle } from './style';
-import featureCollection from './data/sample-geojson.json';
 
 const MODE_TO_HANDLER = {
   [MODES.READ_ONLY]: null,

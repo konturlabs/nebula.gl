@@ -1,10 +1,7 @@
-/* eslint-env browser */
-
-import window from 'global/window';
-import * as React from 'react';
+import React from 'react';
 import DeckGL from '@deck.gl/react';
 import { MapView, MapController, RGBAColor } from '@deck.gl/core';
-import { StaticMap } from 'react-map-gl';
+import Map from 'react-map-gl';
 import GL from '@luma.gl/constants';
 import circle from '@turf/circle';
 
@@ -202,7 +199,7 @@ function getEditHandleTypeFromEitherLayer(handleOrFeature) {
   return handleOrFeature.type;
 }
 
-function getEditHandleColor(handle: {}): RGBAColor {
+function getEditHandleColor(handle: Record<string, unknown>): RGBAColor {
   switch (getEditHandleTypeFromEitherLayer(handle)) {
     case 'existing':
       return [0xff, 0x80, 0x00, 0xff];
@@ -215,7 +212,7 @@ function getEditHandleColor(handle: {}): RGBAColor {
 }
 
 export default class Example extends React.Component<
-  {},
+  Record<string, unknown>,
   {
     viewport: Record<string, any>;
     testFeatures: any;
@@ -234,7 +231,7 @@ export default class Example extends React.Component<
     };
   }
 > {
-  constructor(props: {}) {
+  constructor(props: Record<string, unknown>) {
     super(props);
 
     this.state = {
@@ -828,8 +825,11 @@ export default class Example extends React.Component<
 
   renderStaticMap(viewport: Record<string, any>) {
     return (
-      // @ts-ignore
-      <StaticMap {...viewport} mapStyle={'mapbox://styles/mapbox/dark-v10'} />
+      <Map
+        {...viewport}
+        mapStyle={'mapbox://styles/mapbox/dark-v10'}
+        mapboxAccessToken={process.env.MapboxAccessToken}
+      />
     );
   }
 

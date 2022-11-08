@@ -111,7 +111,7 @@ export class ModifyHandler extends ModeHandler {
         'Editing 3D point but modeConfig.viewport not provided. Falling back to 2D logic.'
       );
     }
-
+    // @ts-ignore
     return nearestPointOnLine(line, inPoint);
   }
 
@@ -166,10 +166,11 @@ export class ModifyHandler extends ModeHandler {
     }
     return editAction;
   }
-
-  handlePointerMove(
-    event: PointerMoveEvent
-  ): { editAction: EditAction | null | undefined; cancelMapPan: boolean } {
+  // @ts-ignore
+  handlePointerMove(event: PointerMoveEvent): {
+    editAction: EditAction | null | undefined;
+    cancelMapPan: boolean;
+  } {
     this._lastPointerMovePicks = event.picks;
 
     let editAction: EditAction | null | undefined = null;

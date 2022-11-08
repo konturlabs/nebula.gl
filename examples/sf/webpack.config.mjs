@@ -1,5 +1,7 @@
 // NOTE: To use this example standalone (e.g. outside of deck.gl repo)
 // delete the local development overrides at the bottom of this file
+
+// avoid destructuring for older Node version support
 import { resolve } from 'node:path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import DotEnvPlugin from 'dotenv-webpack';
@@ -8,36 +10,25 @@ const CONFIG = {
   mode: 'development',
 
   devtool: 'source-map',
-  devServer: {
-    static: './dist',
-  },
+
   entry: {
-    app: resolve('./src/app.tsx'),
+    app: resolve('./app.tsx'),
   },
   resolve: {
-    // Add '.ts' and '.tsx' as resolvable extensions.
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
-  },
-
-  optimization: {
-    runtimeChunk: 'single',
   },
   stats: 'minimal',
   module: {
     rules: [
       {
         // Compile ES2015 using babel
-        test: /\.tsx?$/,
-        include: [resolve('.'), resolve('../../modules')],
+        test: /(\.js|\.ts|\.tsx)$/,
+        include: [resolve('.'), resolve('../../modules'), /@luma.gl\/core/],
         exclude: [/node_modules/],
         use: {
           loader: 'babel-loader',
           // options in .babelrc
         },
-      },
-      {
-        test: /\.(png|jpg|gif)$/,
-        type: 'asset/inline',
       },
     ],
   },

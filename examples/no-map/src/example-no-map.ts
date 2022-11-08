@@ -1,5 +1,5 @@
 import { BitmapLayer } from '@deck.gl/layers';
-import Example from '../deck/example';
+import Example from '../../deck/example';
 
 // https://en.wikipedia.org/wiki/Wikipedia:Featured_pictures/Animals/Birds#/media/File:Dendrocygna_eytoni_-_Macquarie_University.jpg
 // JJ Harrison (jjharrison89@facebook.com) - Own work - CC BY-SA 4.0

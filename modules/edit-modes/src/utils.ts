@@ -2,7 +2,7 @@ import destination from '@turf/destination';
 import bearing from '@turf/bearing';
 import pointToLineDistance from '@turf/point-to-line-distance';
 import { flattenEach } from '@turf/meta';
-import { point, MultiLineString } from '@turf/helpers';
+import { point } from '@turf/helpers';
 import { getCoords } from '@turf/invariant';
 import WebMercatorViewport from 'viewport-mercator-project';
 import { Viewport, Pick, EditHandleFeature, EditHandleType } from './types';
@@ -57,7 +57,7 @@ export function toDeckColor(
 export function recursivelyTraverseNestedArrays(
   array: Array<any>,
   prefix: Array<number>,
-  fn: Function
+  fn: (array: Array<any>, prefix: number[]) => void
 ) {
   if (!Array.isArray(array[0])) {
     return true;
@@ -170,7 +170,7 @@ export function nearestPointOnProjectedLine(
     type: 'Feature',
     geometry: {
       type: 'Point',
-      coordinates: wmViewport.unproject([x0, y0, z0]),
+      coordinates: wmViewport.unproject([x0, y0, z0]) as [number, number, number],
     },
     properties: {
       // TODO: calculate the distance in proper units
@@ -180,7 +180,7 @@ export function nearestPointOnProjectedLine(
   };
 }
 
-export function nearestPointOnLine<G extends LineString | MultiLineString>(
+export function nearestPointOnLine(
   lines: FeatureOf<LineString>,
   inPoint: FeatureOf<Point>,
   viewport?: Viewport

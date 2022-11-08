@@ -1,9 +1,11 @@
 import window from 'global/window';
 import * as React from 'react';
 import DeckGL from '@deck.gl/react';
-import { StaticMap } from 'react-map-gl';
+import { Map } from 'react-map-gl';
 
 import { HtmlOverlay, HtmlClusterOverlay, HtmlOverlayItem } from '@nebula.gl/overlays';
+
+const MAPBOX_ACCESS_TOKEN = process.env.MapboxAccessToken;
 
 const initialViewState = {
   longitude: -122.4,
@@ -183,7 +185,7 @@ export default class Example extends React.Component {
       <div style={styles.mapContainer}>
         <link href="https://api.mapbox.com/mapbox-gl-js/v0.47.0/mapbox-gl.css" rel="stylesheet" />
         <DeckGL initialViewState={initialViewState} controller={true} layers={[]}>
-          <StaticMap />
+          <Map mapboxAccessToken={MAPBOX_ACCESS_TOKEN} />
           {this.getWorldHeritage()}
         </DeckGL>
       </div>

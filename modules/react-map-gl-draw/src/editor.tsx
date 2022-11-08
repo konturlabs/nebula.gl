@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 import { Feature, Tooltip } from '@nebula.gl/edit-modes';
 import { GeoJsonType, RenderState, Id } from './types';
 
@@ -536,16 +534,20 @@ export default class Editor extends ModeHandler {
       if (!coordinates) {
         return null;
       }
+      /* eslint-disable prettier/prettier */
       return (
         <g key={elemKey}>
-          {// eslint-disable-next-line prettier/prettier
-          //@ts-ignore
-          this._renderFill(index, coordinates, style)}
-          {// eslint-disable-next-line prettier/prettier
-          // @ts-ignore
-          this._renderSegments(index, coordinates, style)}
+          {
+            // @ts-ignore
+            this._renderFill(index, coordinates, style)
+          }
+          {
+            // @ts-ignore
+            this._renderSegments(index, coordinates, style)
+          }
         </g>
       );
+      /* eslint-enable prettier/prettier */
     }
 
     return (

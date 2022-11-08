@@ -54,7 +54,7 @@ export function toDeckColor(
 export function recursivelyTraverseNestedArrays(
   array: Array<any>,
   prefix: Array<number>,
-  fn: Function
+  fn: (array: Array<any>, prefix: Array<number>) => void
 ) {
   if (!Array.isArray(array[0])) {
     return true;
@@ -94,7 +94,7 @@ export function generatePointsParallelToLinePoints(
   // Add the distance as the current position moves away from the lineString
   const p3 = destination(p2, ddistance, orthogonalBearing);
   const p4 = destination(p1, ddistance, orthogonalBearing);
-  //@ts-ignore
+  // @ts-ignore
   return [p3.geometry.coordinates, p4.geometry.coordinates];
 }
 
@@ -117,7 +117,7 @@ export function nearestPointOnProjectedLine(
   // Project the line to viewport, then find the nearest point
   const coordinates: Array<Array<number>> = line.geometry.coordinates as any;
   const projectedCoords = coordinates.map(([x, y, z = 0]) => wmViewport.project([x, y, z]));
-  //@ts-ignore
+  // @ts-ignore
   const [x, y] = wmViewport.project(inPoint.geometry.coordinates);
   // console.log('projectedCoords', JSON.stringify(projectedCoords));
 
@@ -152,7 +152,7 @@ export function nearestPointOnProjectedLine(
       };
     }
   });
-  //@ts-ignore
+  // @ts-ignore
   const { index, x0, y0 } = minPointInfo;
   const [x1, y1, z1 = 0] = projectedCoords[index - 1];
   const [x2, y2, z2 = 0] = projectedCoords[index];
@@ -167,6 +167,7 @@ export function nearestPointOnProjectedLine(
     type: 'Feature',
     geometry: {
       type: 'Point',
+      // @ts-ignore
       coordinates: wmViewport.unproject([x0, y0, z0]),
     },
     properties: {

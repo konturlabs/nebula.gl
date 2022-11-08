@@ -1,12 +1,11 @@
-/* global document, window */
+/* global document process */
 import React from "react";
 import ReactDOM from "react-dom";
 import DeckGL from "@deck.gl/react";
 import { HtmlOverlayItem, HtmlClusterOverlay } from "@nebula.gl/overlays";
 import { StaticMap } from "react-map-gl";
 
-const MAPBOX_ACCESS_TOKEN =
-  "pk.eyJ1IjoiZ2Vvcmdpb3MtdWJlciIsImEiOiJjanZidTZzczAwajMxNGVwOGZrd2E5NG90In0.gdsRu_UeU_uPi9IulBruXA";
+const MAPBOX_ACCESS_TOKEN = process.env.MapboxAccessToken;
 
 const DATA_URL =
   "https://cors-tube.vercel.app/?url=https://whc.unesco.org/en/list/georss/";
@@ -88,8 +87,8 @@ export class WorldHeritageApp extends React.Component {
         const data = Array.from(xmlDoc.getElementsByTagName("item")).map(
           (item) => {
             const title = item.getElementsByTagName("title")[0].textContent;
-            const description = item.getElementsByTagName("description")[0]
-              .textContent;
+            const description =
+              item.getElementsByTagName("description")[0].textContent;
             const link = item.getElementsByTagName("link")[0].textContent;
             const lat = Number(
               item.getElementsByTagName("geo:lat")[0].textContent

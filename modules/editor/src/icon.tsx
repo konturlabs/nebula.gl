@@ -1,4 +1,3 @@
-import * as React from 'react';
 import 'boxicons';
 
 export function Icon(props) {

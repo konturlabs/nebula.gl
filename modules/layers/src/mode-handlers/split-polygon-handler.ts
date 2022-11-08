@@ -98,9 +98,10 @@ export class SplitPolygonHandler extends ModeHandler {
     return editAction;
   }
 
-  handlePointerMove({
-    groundCoords,
-  }: PointerMoveEvent): { editAction: EditAction | null | undefined; cancelMapPan: boolean } {
+  handlePointerMove({ groundCoords }: PointerMoveEvent): {
+    editAction: EditAction | null | undefined;
+    cancelMapPan: boolean;
+  } {
     const clickSequence = this.getClickSequence();
     const result = { editAction: null, cancelMapPan: false };
 
@@ -154,6 +155,7 @@ export class SplitPolygonHandler extends ModeHandler {
       // @ts-ignore
       updatedCoordinates = coordinates.reduce((agg, prev) => {
         prev.forEach((p) => {
+          // @ts-ignore
           agg.push([p]);
         });
         return agg;

@@ -17,6 +17,7 @@ export default class ElevatedEditHandleLayer extends CompositeLayer<any> {
     );
 
     const lines = new LineLayer(
+      // @ts-ignore
       Object.assign({}, this.props, {
         id: `${this.props.id}-LineLayer`,
         data: this.props.data,

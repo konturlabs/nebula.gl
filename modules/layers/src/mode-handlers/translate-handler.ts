@@ -11,9 +11,10 @@ export class TranslateHandler extends ModeHandler {
   _geometryBeforeTranslate: FeatureCollection | null | undefined;
   _isTranslatable: boolean;
 
-  handlePointerMove(
-    event: PointerMoveEvent
-  ): { editAction: EditAction | null | undefined; cancelMapPan: boolean } {
+  handlePointerMove(event: PointerMoveEvent): {
+    editAction: EditAction | null | undefined;
+    cancelMapPan: boolean;
+  } {
     let editAction: EditAction | null | undefined = null;
 
     this._isTranslatable =
@@ -94,6 +95,7 @@ export class TranslateHandler extends ModeHandler {
     const selectedIndexes = this.getSelectedFeatureIndexes();
     for (let i = 0; i < selectedIndexes.length; i++) {
       const selectedIndex = selectedIndexes[i];
+      // @ts-ignore
       const movedFeature = movedFeatures.features[i];
       updatedData = updatedData.replaceGeometry(selectedIndex, movedFeature.geometry);
     }

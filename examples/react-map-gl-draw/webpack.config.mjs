@@ -1,5 +1,7 @@
 // NOTE: To use this example standalone (e.g. outside of deck.gl repo)
 // delete the local development overrides at the bottom of this file
+
+// avoid destructuring for older Node version support
 import { resolve } from 'node:path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import DotEnvPlugin from 'dotenv-webpack';
@@ -7,22 +9,22 @@ import DotEnvPlugin from 'dotenv-webpack';
 const CONFIG = {
   mode: 'development',
 
-  devtool: 'source-map',
-  devServer: {
-    static: './dist',
-  },
   entry: {
     app: resolve('./src/app.tsx'),
   },
-  resolve: {
-    // Add '.ts' and '.tsx' as resolvable extensions.
-    extensions: ['.ts', '.tsx', '.js', '.jsx'],
+
+  devServer: {
+    contentBase: [resolve(__dirname), resolve(__dirname, './static')],
   },
 
-  optimization: {
-    runtimeChunk: 'single',
+  output: {
+    library: 'App',
+    path: resolve(__dirname, './dist'),
+    filename: 'app.js',
   },
-  stats: 'minimal',
+
+  devtool: 'source-map',
+
   module: {
     rules: [
       {

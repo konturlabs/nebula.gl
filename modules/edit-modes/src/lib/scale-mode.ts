@@ -112,6 +112,7 @@ export class ScaleMode extends GeoJsonEditMode {
       const cursorGeometry = this.getSelectedFeaturesAsFeatureCollection(props);
 
       // Get resize cursor direction from the hovered scale editHandle (e.g. nesw or nwse)
+      // @ts-ignore
       const centroid = turfCentroid(cursorGeometry);
       const bearing = turfBearing(centroid, this._selectedEditHandle);
       const positiveBearing = bearing < 0 ? bearing + 180 : bearing;

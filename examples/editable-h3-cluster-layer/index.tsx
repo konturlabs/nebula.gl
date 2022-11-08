@@ -11,8 +11,7 @@ import {
 import { StaticMap } from 'react-map-gl';
 import { hexagonCluster1, hexagonCluster2, hexagonCluster3 } from './data.js';
 
-const MAPBOX_ACCESS_TOKEN =
-  'pk.eyJ1IjoiZ2Vvcmdpb3MtdWJlciIsImEiOiJjanZidTZzczAwajMxNGVwOGZrd2E5NG90In0.gdsRu_UeU_uPi9IulBruXA';
+const MAPBOX_ACCESS_TOKEN = process.env.MapboxAccessToken;
 
 const SELECTED_FILL_COLOR = [50, 100, 200, 230];
 const UNSELECTED_FILL_COLOR = [50, 100, 200, 100];

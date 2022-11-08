@@ -1,7 +1,5 @@
 import turfBearing from '@turf/bearing';
-// @ts-ignore
 import turfCenter from '@turf/center';
-// @ts-ignore
 import memoize from '../memoize';
 
 import { ClickEvent, PointerMoveEvent, Tooltip, ModeProps, GuideFeatureCollection } from '../types';
@@ -46,6 +44,7 @@ export class MeasureAngleMode extends GeoJsonEditMode {
             type: 'Point',
             coordinates: p,
           },
+          properties: {},
         })),
       }).geometry.coordinates;
 

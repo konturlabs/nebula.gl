@@ -1,6 +1,6 @@
 import { createRoot } from 'react-dom/client';
 
-import Example from './example';
+import { Example } from './example';
 
 const mountEl = document.createElement('div');
 const root = createRoot(mountEl);

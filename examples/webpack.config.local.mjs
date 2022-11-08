@@ -7,9 +7,11 @@
 
 // avoid destructuring for older Node version support
 // test
-const resolve = require('path').resolve;
-const webpack = require('webpack');
+import { resolve, dirname } from 'path';
+import { fileURLToPath } from 'url';
+import DotEnvPlugin from 'dotenv-webpack';
 
+const __dirname = dirname(fileURLToPath(import.meta.url));
 const LIB_DIR = resolve(__dirname, '..');
 const MAIN_SRC_DIR = resolve(LIB_DIR, './modules/main/src/');
 const EDIT_MODES_SRC_DIR = resolve(LIB_DIR, './modules/edit-modes/src/');
@@ -83,7 +85,11 @@ function makeLocalDevConfig(EXAMPLE_DIR = LIB_DIR) {
       ],
     },
     // Optional: Enables reading mapbox token from environment variable
-    plugins: [new webpack.EnvironmentPlugin(['MapboxAccessToken'])],
+    plugins: [
+      new DotEnvPlugin({
+        path: resolve('..', '..', '.env'),
+      }),
+    ],
   };
 }
 
@@ -101,7 +107,7 @@ function addLocalDevSettings(config, exampleDir) {
   return config;
 }
 
-module.exports = (config, exampleDir) => (env) => {
+export default (config, exampleDir) => (env) => {
   // npm run start-local now transpiles the lib
   if (env && env.local) {
     config = addLocalDevSettings(config, exampleDir);

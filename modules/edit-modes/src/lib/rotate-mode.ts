@@ -50,6 +50,7 @@ export class RotateMode extends GeoJsonEditMode {
 
     if (this._isRotating) {
       // Display rotate pivot
+      // @ts-ignore
       return featureCollection([turfCentroid(selectedGeometry)]) as GuideFeatureCollection;
     }
 
@@ -173,7 +174,9 @@ export class RotateMode extends GeoJsonEditMode {
       return null;
     }
 
+    // @ts-ignore
     const centroid = turfCentroid(this._geometryBeingRotated);
+    // @ts-ignore
     const angle = getRotationAngle(centroid, startDragPoint, currentPoint);
     // @ts-ignore
     const rotatedFeatures: FeatureCollection = turfTransformRotate(

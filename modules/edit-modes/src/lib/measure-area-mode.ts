@@ -43,6 +43,7 @@ export class MeasureAreaMode extends DrawPolygonMode {
 
       return [
         {
+          // @ts-ignore
           position: centroid.geometry.coordinates,
           text,
         },
