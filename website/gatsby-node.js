@@ -1,10 +1,10 @@
-const { setOcularConfig } = require('gatsby-theme-ocular');
-const ocularConfig = require('./ocular-config');
-const DEPENDENCIES = require('./package.json').dependencies;
+import { setOcularConfig } from 'gatsby-theme-ocular';
+import ocularConfig from './ocular-config';
+import { dependencies as DEPENDENCIES } from './package.json';
 
 setOcularConfig(ocularConfig);
 
-module.exports.onCreateWebpackConfig = function onCreateWebpackConfigOverride(opts) {
+export const onCreateWebpackConfig = function onCreateWebpackConfigOverride(opts) {
   const {
     stage, // build stage: ‘develop’, ‘develop-html’, ‘build-javascript’, or ‘build-html’
     // rules, // Object (map): set of preconfigured webpack config rules

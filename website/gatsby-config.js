@@ -1,4 +1,4 @@
-const ocularConfig = require('./ocular-config');
+import ocularConfig from './ocular-config';
 
 // If you are using gatsby-remark-responsive-iframe, it must appear after gatsby-remark-embedded-codesandbox
 // plugin in your configuration or the iframe will not be transformed.
@@ -20,20 +20,18 @@ const embeddedCodesandbox = {
   },
 };
 
-module.exports = {
-  plugins: [
-    {
-      resolve: `gatsby-theme-ocular`,
-      options: ocularConfig,
+export const plugins = [
+  {
+    resolve: `gatsby-theme-ocular`,
+    options: ocularConfig,
+  },
+  {
+    resolve: `gatsby-plugin-typescript`,
+  },
+  {
+    resolve: `gatsby-transformer-remark`,
+    options: {
+      plugins: [embeddedCodesandbox],
     },
-    {
-      resolve: `gatsby-plugin-typescript`,
-    },
-    {
-      resolve: `gatsby-transformer-remark`,
-      options: {
-        plugins: [embeddedCodesandbox],
-      },
-    },
-  ],
-};
+  },
+];

@@ -1,12 +1,13 @@
 {
   "name": "ocular-website-gatsby",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "A website for Ocular, built with Ocular (Gatsby version)",
   "license": "MIT",
   "keywords": [
     "ocular"
   ],
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "start": "yarn clean-examples && yarn clean && yarn develop",
     "clean": "rm -rf ./.cache ./public",
@@ -18,25 +19,25 @@
     "fix-mjs-bug": "find ../node_modules -name '*.mjs' | xargs rm"
   },
   "dependencies": {
-    "@deck.gl/core": "^8.6.0",
-    "@deck.gl/layers": "^8.6.0",
-    "@deck.gl/react": "^8.6.0",
-    "@luma.gl/constants": "^8.5.10",
-    "@luma.gl/core": "^8.5.10",
-    "@luma.gl/webgl": "^8.5.10",
-    "@probe.gl/stats-widget": "^3.0.1",
-    "gl": "^4.2.2",
-    "react": "^16.6.0",
-    "react-dom": "^16.6.0",
-    "react-map-gl": "^4.1.2",
-    "styled-components": "^4.3.2"
+    "@deck.gl/core": "^8.8.17",
+    "@deck.gl/layers": "^8.8.17",
+    "@deck.gl/react": "^8.8.17",
+    "@luma.gl/constants": "^8.5.17",
+    "@luma.gl/core": "^8.5.17",
+    "@luma.gl/webgl": "^8.5.17",
+    "@probe.gl/stats-widget": "^3.5.2",
+    "gl": "^6.0.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-map-gl": "^7.0.19",
+    "styled-components": "^5.3.6"
   },
   "devDependencies": {
-    "gatsby": "^2.18.11",
-    "gatsby-plugin-typescript": "2.3.1",
-    "gatsby-plugin-styletron": "^4.1.22",
+    "gatsby": "^5.0.0",
+    "gatsby-plugin-typescript": "5.0.0",
+    "gatsby-plugin-styletron": "^8.0.0",
     "gatsby-remark-embedded-codesandbox": "^1.2.0",
-    "gatsby-theme-ocular": "^1.0.3",
-    "gh-pages": "^2.1.1"
+    "gatsby-theme-ocular": "^1.2.5",
+    "gh-pages": "^4.0.0"
   }
 }

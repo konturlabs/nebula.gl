@@ -1,7 +1,7 @@
-const resolve = require('path').resolve;
+import { resolve } from 'path';
 
-const DOCS = require('../docs/table-of-contents.json');
-const DEPENDENCIES = require('./package.json').dependencies;
+import DOCS from '../docs/table-of-contents.json';
+import { dependencies as DEPENDENCIES } from './package.json';
 
 const LIB_DIR = resolve(__dirname, '..');
 const MAIN_SRC_DIR = resolve(LIB_DIR, './modules/main/dist');
@@ -47,7 +47,7 @@ for (const dependency in DEPENDENCIES) {
   dependencyAliases[dependency] = `${__dirname}/node_modules/${dependency}`;
 }
 
-module.exports = {
+export default {
   // Adjusts amount of debug information from ocular-gatsby
   logLevel: 4,
 
@@ -88,8 +88,7 @@ module.exports = {
     },
     {
       text: 'Full GeoJson Support',
-      desc:
-        'Supports corner cases like converting between Polygon and MultiPolygon features as points are added',
+      desc: 'Supports corner cases like converting between Polygon and MultiPolygon features as points are added',
       img: 'images/icon-high-precision.svg',
     },
     {

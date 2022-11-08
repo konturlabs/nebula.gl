@@ -1,5 +1,4 @@
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import React from 'react';
 import MapGL from 'react-map-gl';
 import { Editor, EditingMode } from 'react-map-gl-draw';
 
